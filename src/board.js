@@ -2,7 +2,9 @@ import {Component} from 'react'
 import Square from './square'
 
 export default class Board extends Component {
-  renderSquare(i) {
+  
+  
+  renderSquare = (i) => {
     const {squares, click} = this.props 
     return <Square value={squares[i]} click={() => click(i)}/>
   }

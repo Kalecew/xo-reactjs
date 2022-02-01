@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Board from './board'
+import Move from './move'
 import calculateWinner from './helpers/calculateWinner.js'
 
 export default class Game extends Component {
@@ -24,8 +25,6 @@ export default class Game extends Component {
 
   createStatus = (winner, isNextX) => winner ? 'Winner: ' + winner : 'Next player: ' + (isNextX ? 'X' : 'O')
 
-  createRecord = (i) => i ? 'Move #' + i : 'Game start'
-
   click = (i) => {
     const {isNextX,step,history} = this.state
     const squares = history[step].squares
@@ -38,14 +37,14 @@ export default class Game extends Component {
     })
   }
 
-  renderMoves = () => {
-    const {history} = this.state
-    return history.map((item, i) => {
-      return (
-        <li key={i}>
-          <a href="#">{this.createRecord(i)}</a>
-        </li>
-      )
+  renderMoves = () => this.state.history.map((item, i) => <Move i={i} jumpTo={() => this.jumpTo(i)}/>)
+
+  jumpTo = (i) => {
+    const {step, history} = this.state
+    this.setState({
+      isNextX: (step % 2) ? false : true,
+      step: i,
+      history: history
     })
   }
 
@@ -53,7 +52,7 @@ export default class Game extends Component {
     const {isNextX,step,history} = this.state
     const squares = history[step].squares
     const winner = calculateWinner(squares)
-    let status = this.createStatus(winner,isNextX)
+    const status = this.createStatus(winner,isNextX)
     
     return (
       <div className="game">

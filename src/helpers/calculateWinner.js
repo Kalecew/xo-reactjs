@@ -10,12 +10,19 @@ const calculateWinner = (squares) => {
 		[2,4,6]
 	]
 	let result = null
-	lines.forEach((item,i) => {
+	lines.map((item) => {
 		const [a,b,c] = item
 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
 			result = squares[a]
 		}			
 	})
 	return result
+
+	// lines.map((item) => {
+	// 	const [a,b,c] = item
+	// 	if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
+	// 		return squares[a]
+	// })
+	// return null
 }
 export default calculateWinner
