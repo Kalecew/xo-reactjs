@@ -4,4 +4,4 @@ const Square = ({value, click}) => (
   </button>
 )
 
-export {Square}
+export default Square
