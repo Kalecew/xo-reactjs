@@ -1,5 +1,8 @@
+html{
+  font-size: 10px;
+}
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font-family: "Century Gothic", Futura, sans-serif;
   margin: 0;
 }
 ol, ul {
@@ -12,37 +15,81 @@ ol, ul {
   background-position: center;
   display: flex;
   align-items: center;
-}
-.container{
-  width: 60%;
-  margin: 0 auto;
+  justify-content: center;
 }
 .game__content{
+  width: 60vw;
+  height: 45vh;
   display: flex;
-  padding: 80px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 1rem;
+  padding: 40px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 20px 0px #fff, 0 0 20px 0px #fff inset;
+  border-radius: 5px;
+  position: relative;
 }
-.game__info {
-  margin-left: 20px;
+.game__status{
+  flex: 1 0 100%;
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px khaki;
+  text-align: center;
+  line-height: 1.5;
 }
-.board__row:after {
-  clear: both;
-  content: "";
-  display: table;
+.board{
+  display: grid;
+  grid-template-columns: repeat(3, 34%);
+  grid-template-rows: repeat(3, 34%);
+  width: 38%;
+  height: 80%;
+  overflow: hidden;
 }
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  transform: translate(-1px,-1px);
   float: left;
-  font-size: 24px;
+  font-size: 6em;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
+  text-align: center;  
+  border: none;
+  background: none;
+  outline: 1px solid #fff;
+  box-shadow: 0 0 5px 2px #fff;
+  color: #fff;
 }
 .square:focus {
   outline: none;
+}
+.square--x-blur{
+  text-shadow: 0 0 10px #f01fb1;
+}
+.square--o-blur{
+  text-shadow: 0 0 10px #26fdfd;
+}
+.moves__list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.moves__link{
+  text-shadow: 0 0 10px #fff;
+  color: #fff;
+  font-size: 2.4em;
+}
+.game__reset{
+  position: absolute;
+  font-size: 3em;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #fff, 0 0 5px #fff inset;
+  text-shadow: 0 0 10px #fff;
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  cursor: pointer;
 }

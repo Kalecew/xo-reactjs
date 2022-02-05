@@ -33,33 +33,50 @@ export default class Game extends Component {
     return null
   }
 
-  createStatus = (winner, isNextX) => winner ? 'Winner: ' + winner : 'Next player: ' + (isNextX ? 'X' : 'O')
+  createStatus = (winner) => {
+    const {isNextX,gameOver} = this.state
+    if (winner)
+      return 'Winner: ' + winner
+    else if (gameOver) 
+      return 'Game over'
+    else 
+      return 'Next player: ' + (isNextX ? '✘' : '𝓞')
+  }
 
   createNewHistory = (i) => {
     const {isNextX,step,history} = this.state
     const result = Array.from(history)
     const newSquares = Array.from(result[step].squares)
-    newSquares[i] = isNextX ? 'X' : 'O'
+    newSquares[i] = isNextX ? '✘' : '𝓞'
     result.push({squares: newSquares})
     return result
   }
 
-  gameIsOver = (squares, i) => {
-    if(this.calculateWinner(squares)) this.setState({gameOver: true})
+  squareIsLock = (squares, i) => {
     if(this.state.gameOver || this.calculateWinner(squares) || squares[i]) return true
     return false
+  }
+
+  gameIsOver = (squares) => {
+    if(this.calculateWinner(squares) || squares.indexOf(null) === -1) 
+      this.setState({gameOver: true})
   }
 
   click = (i) => {
     const {isNextX,step,history} = this.state
     const squares = history[step].squares
-    if(this.gameIsOver(squares, i)) return false   
-    const newHistory = this.createNewHistory(i)
-    this.setState({
-      isNextX: !isNextX,
-      step: step + 1,
-      history: newHistory
-    })
+    if (this.squareIsLock(squares,i)) {
+      return false  
+    } else {
+      const newHistory = this.createNewHistory(i)
+      this.setState({
+        isNextX: !isNextX,
+        step: step + 1,
+        history: newHistory
+      })
+      const newSquares = newHistory[step+1].squares
+      this.gameIsOver(newSquares, i)
+    }     
   }  
 
   calculateIsNextX = (step) => (step % 2) ? false : true
@@ -76,24 +93,33 @@ export default class Game extends Component {
       <Move key={i} i={i} jumpTo={() => this.jumpTo(i)}/>
     )
 
+
+  reset = () => this.setState({
+    gameOver: false,
+    isNextX: true,
+    step: 0,
+    history: [
+      {squares: Array(9).fill(null)}
+    ]
+  })
+
+
   render() {
-    const {isNextX,step,history} = this.state
+    const {step,history} = this.state
     const squares = history[step].squares
     const winner = this.calculateWinner(squares)
-    const status = this.createStatus(winner,isNextX)
-    console.log(bg)
+    const status = this.createStatus(winner)
     
     return (
       <div className="game" style={{ backgroundImage:`url(${bg})`}}>
-        <div class="container">
-          <div class="game__content">
-              <Board squares={squares} click={(i) => this.click(i)}/>
-              <div className="game__info info">
-                <div>{status}</div>
-                <ul>{this.renderMoves()}</ul>
-              </div>
-          </div>          
-        </div>        
+        <div className="game__content">
+          <div className="game__status">{status}</div>            
+          <div className="game__moves moves">
+            <ul className="moves__list">{this.renderMoves()}</ul>
+          </div>            
+          <Board squares={squares} click={(i) => this.click(i)}/>      
+          <button className="game__reset" onClick={() => this.reset()}>⭯</button>        
+        </div>                 
       </div>
     )
   }
