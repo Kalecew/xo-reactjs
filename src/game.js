@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Board from './board'
 import Move from './move'
+import bg from './img/bg.jpg'
 
 export default class Game extends Component {
   state = {
@@ -50,7 +51,7 @@ export default class Game extends Component {
   }
 
   click = (i) => {
-    const {isNextX,step,history,gameOver} = this.state
+    const {isNextX,step,history} = this.state
     const squares = history[step].squares
     if(this.gameIsOver(squares, i)) return false   
     const newHistory = this.createNewHistory(i)
@@ -59,12 +60,7 @@ export default class Game extends Component {
       step: step + 1,
       history: newHistory
     })
-  }
-
-  renderMoves = () => 
-    this.state.history.map((item, i) => 
-      <Move key={i} i={i} jumpTo={() => this.jumpTo(i)}/>
-    )
+  }  
 
   calculateIsNextX = (step) => (step % 2) ? false : true
 
@@ -75,21 +71,29 @@ export default class Game extends Component {
     })
   }
 
+  renderMoves = () => 
+    this.state.history.map((item, i) => 
+      <Move key={i} i={i} jumpTo={() => this.jumpTo(i)}/>
+    )
+
   render() {
     const {isNextX,step,history} = this.state
     const squares = history[step].squares
     const winner = this.calculateWinner(squares)
     const status = this.createStatus(winner,isNextX)
+    console.log(bg)
     
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board squares={squares} click={(i) => this.click(i)}/>
-        </div>
-        <div className="game-info">
-          <div> {status} </div>
-          <ul>{this.renderMoves()}</ul>
-        </div>
+      <div className="game" style={{ backgroundImage:`url(${bg})`}}>
+        <div class="container">
+          <div class="game__content">
+              <Board squares={squares} click={(i) => this.click(i)}/>
+              <div className="game__info info">
+                <div>{status}</div>
+                <ul>{this.renderMoves()}</ul>
+              </div>
+          </div>          
+        </div>        
       </div>
     )
   }
