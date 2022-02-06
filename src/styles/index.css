@@ -18,7 +18,7 @@ ol, ul {
   justify-content: center;
 }
 .game__content{
-  width: 60vw;
+  width: 50vw;
   height: 45vh;
   display: flex;
   flex-wrap: wrap;
@@ -43,10 +43,36 @@ ol, ul {
   display: grid;
   grid-template-columns: repeat(3, 34%);
   grid-template-rows: repeat(3, 34%);
-  width: 38%;
+  width: 35%;
   height: 80%;
   overflow: hidden;
+  position: relative;
 }
+.board::before{
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  box-shadow: 0 0 5px 2px khaki;
+  border: 1px solid khaki;
+  position: absolute;
+  z-index: 1;
+  transition: width .5s linear;
+  opacity: 0;
+}
+.board--win::before{
+  width: 150%;
+  opacity: 1;
+}
+.board--win-1::before{top: 16%; left: 50%; transform: translateX(-50%) rotate(0deg);}
+.board--win-2::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(0deg);}
+.board--win-3::before{top: 84%; left: 50%; transform: translateX(-50%) rotate(0deg);}
+.board--win-4::before{top: 50%; left: 16%; transform: translateX(-50%) rotate(90deg);}
+.board--win-5::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(90deg);}
+.board--win-6::before{top: 50%; left: 84%; transform: translateX(-50%) rotate(90deg);}
+.board--win-7::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(45deg);}
+.board--win-8::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(-45deg);}
 .square {
   transform: translate(-1px,-1px);
   float: left;
@@ -77,7 +103,10 @@ ol, ul {
 .moves__link{
   text-shadow: 0 0 10px #fff;
   color: #fff;
-  font-size: 2.4em;
+  font-size: 2em;
+}
+.moves__link--active{
+  text-decoration: none;
 }
 .game__reset{
   position: absolute;
