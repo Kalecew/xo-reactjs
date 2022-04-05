@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/xo-reactjs/static/css/main.76502e98.chunk.css",
+    "main.js": "/xo-reactjs/static/js/main.d6e5848c.chunk.js",
+    "main.js.map": "/xo-reactjs/static/js/main.d6e5848c.chunk.js.map",
+    "runtime-main.js": "/xo-reactjs/static/js/runtime-main.fda8961f.js",
+    "runtime-main.js.map": "/xo-reactjs/static/js/runtime-main.fda8961f.js.map",
+    "static/js/2.eaffede8.chunk.js": "/xo-reactjs/static/js/2.eaffede8.chunk.js",
+    "static/js/2.eaffede8.chunk.js.map": "/xo-reactjs/static/js/2.eaffede8.chunk.js.map",
+    "index.html": "/xo-reactjs/index.html",
+    "static/css/main.76502e98.chunk.css.map": "/xo-reactjs/static/css/main.76502e98.chunk.css.map",
+    "static/js/2.eaffede8.chunk.js.LICENSE.txt": "/xo-reactjs/static/js/2.eaffede8.chunk.js.LICENSE.txt",
+    "static/media/bg.b446155c.jpg": "/xo-reactjs/static/media/bg.b446155c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fda8961f.js",
+    "static/js/2.eaffede8.chunk.js",
+    "static/css/main.76502e98.chunk.css",
+    "static/js/main.d6e5848c.chunk.js"
+  ]
+}
