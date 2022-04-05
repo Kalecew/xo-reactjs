@@ -8,7 +8,7 @@ const Move = ({i,jumpTo,currentStep}) => (
 		"moves__link moves__link--active" :
 		"moves__link" 
 		} 
-		onClick={() => jumpTo(i)}>{createRecord(i)}</a>
+		onClick={(e) => jumpTo(i,e)}>{createRecord(i)}</a>
 	</li> 
 )
 export default Move

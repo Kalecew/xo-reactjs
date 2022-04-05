@@ -90,7 +90,8 @@ export default class Game extends Component {
 
   calculateIsNextX = (step) => (step % 2) ? false : true
 
-  jumpTo = (i) => {
+  jumpTo = (i,e) => {
+    e.preventDefault()
     this.setState({
       currentStep: i
     })
@@ -121,7 +122,7 @@ export default class Game extends Component {
 
   renderMoves = (currentStep) => 
     this.state.history.map((item, i) => 
-      <Move key={i} i={i} currentStep={currentStep} jumpTo={() => this.jumpTo(i)}/>
+      <Move key={i} i={i} currentStep={currentStep} jumpTo={this.jumpTo}/>
     )
 
   render() {
