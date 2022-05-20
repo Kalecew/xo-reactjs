@@ -139,7 +139,7 @@ export default class Game extends Component {
             <ul className="moves__list">{this.renderMoves(currentStep)}</ul>
           </div>            
           <Board squares={squares} winner={winner} currentStep={currentStep} lastStep={lastStep} line={line} click={(i) => this.click(i)}/>      
-          <button className="game__reset" onClick={() => this.reset()}>⭯</button>        
+          <button className="game__reset" onClick={() => this.reset()}>↺</button>        
         </div>                 
       </div>
     )

@@ -82,7 +82,7 @@ ol, ul {
 .board--win-7::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(45deg);}
 .board--win-8::before{top: 50%; left: 50%; transform: translateX(-50%) rotate(-45deg);}
 .square {
-  transform: translate(-1px,-1px);
+  transform: translate(-2px,-2px);
   float: left;
   font-size: 6em;
   font-weight: bold;
@@ -129,6 +129,7 @@ ol, ul {
   top: 5%;
   right: 3%;
   cursor: pointer;
+  line-height: 1.1;
 }
 
 @media (max-width: 1024px){
